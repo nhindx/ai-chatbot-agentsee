@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     parts: [{ text: m.content }]
   }));
   try {
-    const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + apiKey;
+    const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + apiKey;
     const r = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -21,7 +21,7 @@ export default async function handler(req, res) {
       })
     });
     const d = await r.json();
-    if (!r.ok) return res.status(502).json({ error: d.error?.message || "AI service error", status: r.status });
+    if (!r.ok) return res.status(502).json({ error: d.error?.message || "AI service error" });
     const reply = d.candidates?.[0]?.content?.parts?.[0]?.text || "Khong the tra loi.";
     return res.status(200).json({ reply });
   } catch (e) {
