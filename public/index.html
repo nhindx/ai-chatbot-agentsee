@@ -72,8 +72,8 @@ function showLogin(){document.getElementById('login-box').classList.remove('hidd
 function showChat(){document.getElementById('login-box').classList.add('hidden');document.getElementById('main-content').classList.remove('hidden');updateRateDisplay();updateAdmin();updateProfilePanel()}
 function updateProfilePanel(){const pp=document.getElementById('profile-panel');if(user&&!user.admin){pp.classList.remove('hidden');document.getElementById('p-name').textContent=user.name;document.getElementById('p-role').textContent='Member';loadAvatar(user.avatar)}else{pp.classList.add('hidden')}}
 function loadAvatar(avatarUrl){const img=document.getElementById('avatar-img');const btn=document.getElementById('submit-btn');const msg=document.getElementById('submit-msg');avatarLoaded=false;btn.disabled=true;msg.textContent='Dang tai avatar...';msg.style.color='#94a3b8';
-if(!avatarUrl){msg.textContent='Khong co avatar';msg.style.color='#ef4444';return}
-const proxyUrl='/api/avatar-proxy?url='+encodeURIComponent(avatarUrl);
+const url=avatarUrl||'https://trangden.vn/agentsee/lop-hoc/api/avatars/2152_avatar_lg.jpg';
+const proxyUrl='/api/avatar-proxy?url='+encodeURIComponent(url);
 img.onload=function(){avatarLoaded=true;btn.disabled=false;msg.textContent='San sang nop bai';msg.style.color='#10b981'};
 img.onerror=function(){msg.textContent='Loi tai avatar';msg.style.color='#ef4444'};
 img.src=proxyUrl}
